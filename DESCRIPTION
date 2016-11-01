@@ -1,0 +1,10 @@
+Package: Spark
+Type: Package
+Title: SparkR tutorial
+Version: 1.0
+Date: 2015-03-23
+Author: Andre
+Maintainer: Andre Henriques <andrec.henriques@gmail.com>
+Description: Spark tutorial
+License: Open
+Imports: SparkR

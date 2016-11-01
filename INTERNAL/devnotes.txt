@@ -1,0 +1,79 @@
+Principles
+1. Use roxygen2 for help. Within R studio Build -> Configure Build Tools -> Generate Documentation with Roxygen -> enable all options. install.packages("roxygen2"). 
+2. Run roxygen2::roxygenise() to create man pages for the package. 
+3. Each R studio dev project contains
+   .Rbuildignore
+   .RData  <- should be empty
+   .Rhistory
+   data (folder)
+   DESCRIPTION
+   man (folder)
+   NAMESPACE
+   R (folder)
+   STI-INTERNAL (folder)
+   stipackagenamexxx.Rproj
+   tests (folder)
+4. The DESCRIPTION file contains
+Package: <PackageName>
+Type: Package
+Title: Space-Time Insight forecast functions
+Version: X.0
+Date: YYYY-MM-DD
+Author: Space-Time Insight
+Maintainer: STI Support <support@spacetimeinsight.com>
+Description: Description of the package.
+License: Commercial
+Depends: R (>= 3.0.3),RUnit,forecast
+LazyData: true
+
+
+4. The .Rbuildignore file specifies what will not be part of the build output
+#########################
+^.*\.Rproj$
+^\.Rproj\.user$
+STI-INTERNAL
+tests
+#########################
+
+5. The tests folder contains
+   1.R - unit test 
+   runTests.R - searches for all unit tests and executes them
+6. The file runTests.R contains
+
+library('RUnit');
+library('<package name>');
+test.suite <- defineTestSuite("<package name>testsuite",
+                              dirs = file.path("tests"),
+                              testFileRegexp = '^\\d+\\.R');
+test.result <- runTestSuite(test.suite);
+printTextProtocol(test.result);
+
+
+### References (technical development)
+http://cran.r-project.org/doc/manuals/r-devel/R-exts.html
+library()
+sessionInfo() 
+installed.packages()
+http://ww2.coastal.edu/kingw/statistics/R-tutorials/package.html
+
+Build Steps
+Run knitr and browse and save as PDF
+RStudio -> Build Source Package
+
+Error Handling Notes
+====================
+
+```
+REXP rexp = c.parseAndEval("try(stiforecastMean(stitestdata001,frequency=7,nfuturepoints=21),silent=TRUE)"); //always safe
+if (rexp.inherits("try-error")) // error, so capture the error message in SI Server somewhere
+{
+  System.err.println("Error: "+rexp.asString()); 
+}
+else // success so process the output as above
+{
+double[] d = rexp.asDoubles();
+}
+```
+
+
+

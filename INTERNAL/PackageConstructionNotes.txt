@@ -1,0 +1,20 @@
+STI Notes:
+
+R CMD build stiforecast
+R CMD INSTALL --build --preclean stiforecast
+
+Or use the Build Source Package or Build Binary Package options in the BUILD tab MORE in RStudio.
+
+Source package name stiforecast_1.0.tar.gz
+Binary package name stiforecast_1.0.tgz
+
+To Install The Package
+R CMD INSTALL stiforecast_1.0.tgz
+R CMD REMOVE stiforecast
+
+Best Practices
+==============
+[1] use function names like stiBlahBlah()
+[2] Provide variants on each function that provide (i) base object (ii) a list of named numeric vectors/arrays (iii) a plot.
+[3] Use default arguments to functions where possible
+[4] Use the DESCRIPTION file to capture package dependencies
